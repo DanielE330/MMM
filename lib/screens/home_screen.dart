@@ -14,7 +14,6 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final transactionsAsync = ref.watch(transactionsProvider);
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -22,22 +21,14 @@ class HomeScreen extends ConsumerWidget {
           'MMM',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
-            tooltip: isDark ? 'Светлая тема' : 'Тёмная тема',
-            onPressed: () {
-              ref.read(themeModeProvider.notifier).state =
-                  isDark ? ThemeMode.light : ThemeMode.dark;
-            },
-          ),
-        ],
       ),
       body: transactionsAsync.when(
         data: (transactions) {
           final now = DateTime.now();
           final thisMonth = transactions
-              .where((t) => t.date.year == now.year && t.date.month == now.month)
+              .where(
+                (t) => t.date.year == now.year && t.date.month == now.month,
+              )
               .toList();
 
           final income = thisMonth
@@ -65,13 +56,18 @@ class HomeScreen extends ConsumerWidget {
                       Text(
                         'Баланс за ${_monthName(now.month)}',
                         style: TextStyle(
-                          color: colorScheme.onPrimaryContainer.withValues(alpha: 0.7),
+                          color: colorScheme.onPrimaryContainer.withValues(
+                            alpha: 0.7,
+                          ),
                           fontSize: 14,
                         ),
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        NumberFormat.currency(locale: 'ru', symbol: '₽').format(balance),
+                        NumberFormat.currency(
+                          locale: 'ru',
+                          symbol: '₽',
+                        ).format(balance),
                         style: TextStyle(
                           color: colorScheme.onPrimaryContainer,
                           fontSize: 34,
@@ -113,11 +109,17 @@ class HomeScreen extends ConsumerWidget {
                   children: [
                     const Text(
                       'Последние транзакции',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     Text(
                       'Всего: ${transactions.length}',
-                      style: TextStyle(fontSize: 13, color: colorScheme.outline),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: colorScheme.outline,
+                      ),
                     ),
                   ],
                 ),
@@ -173,8 +175,19 @@ class HomeScreen extends ConsumerWidget {
 
   String _monthName(int month) {
     const names = [
-      '', 'январе', 'феврале', 'марте', 'апреле', 'мае', 'июне',
-      'июле', 'августе', 'сентябре', 'октябре', 'ноябре', 'декабре',
+      '',
+      'январе',
+      'феврале',
+      'марте',
+      'апреле',
+      'мае',
+      'июне',
+      'июле',
+      'августе',
+      'сентябре',
+      'октябре',
+      'ноябре',
+      'декабре',
     ];
     return names[month];
   }

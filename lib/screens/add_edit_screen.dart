@@ -158,7 +158,6 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
       initialDate: _date,
       firstDate: DateTime(2020),
       lastDate: DateTime.now(),
-      locale: const Locale('ru'),
     );
     if (picked != null) setState(() => _date = picked);
   }

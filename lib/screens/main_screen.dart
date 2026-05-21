@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_finance/screens/add_edit_screen.dart';
 import 'package:my_finance/screens/history_screen.dart';
 import 'package:my_finance/screens/home_screen.dart';
+import 'package:my_finance/screens/settings_screen.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -15,7 +16,7 @@ class MainScreen extends ConsumerStatefulWidget {
 class _MainScreenState extends ConsumerState<MainScreen> {
   int _selectedIndex = 0;
 
-  static const _screens = [HomeScreen(), HistoryScreen()];
+  static const _screens = [HomeScreen(), HistoryScreen(), SettingsScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +36,22 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             selectedIcon: Icon(Icons.history),
             label: 'История',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.settings_outlined),
+            selectedIcon: Icon(Icons.settings),
+            label: 'Настройки',
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const AddEditScreen()),
-        ),
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: _selectedIndex != 2
+          ? FloatingActionButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AddEditScreen()),
+              ),
+              child: const Icon(Icons.add),
+            )
+          : null,
     );
   }
 }
