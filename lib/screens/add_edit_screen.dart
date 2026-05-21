@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -90,6 +91,9 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
                 hintText: '0.00',
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
+              ],
               autofocus: !_isEditing,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) return 'Введите сумму';
