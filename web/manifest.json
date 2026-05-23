@@ -1,6 +1,6 @@
 {
-    "name": "my_finance",
-    "short_name": "my_finance",
+    "name": "MMM",
+    "short_name": "MMM",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

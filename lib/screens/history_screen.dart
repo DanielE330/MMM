@@ -74,7 +74,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
 
           return Column(
             children: [
-              // Active filter chips
+              // active filter chips
               if (_dateFilter != DateFilter.all || _typeFilter != null)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),

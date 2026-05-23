@@ -61,7 +61,7 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            // Type toggle
+            // type toggle
             SegmentedButton<TransactionType>(
               segments: const [
                 ButtonSegment(
@@ -82,7 +82,7 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
               }),
             ),
             const SizedBox(height: 20),
-            // Amount
+            // amount
             TextFormField(
               controller: _amountController,
               decoration: const InputDecoration(
@@ -103,7 +103,7 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
               },
             ),
             const SizedBox(height: 16),
-            // Category
+            // category
             DropdownButtonFormField<String>(
               initialValue: _category,
               decoration: const InputDecoration(labelText: 'Категория *'),
@@ -114,7 +114,7 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
               validator: (v) => v == null ? 'Выберите категорию' : null,
             ),
             const SizedBox(height: 16),
-            // Date picker
+            // date picker
             InkWell(
               onTap: _pickDate,
               borderRadius: BorderRadius.circular(12),
@@ -127,7 +127,7 @@ class _AddEditScreenState extends ConsumerState<AddEditScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            // Comment
+            // comment
             TextFormField(
               controller: _commentController,
               decoration: const InputDecoration(

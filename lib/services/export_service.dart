@@ -29,7 +29,7 @@ class ExportService {
 
   static Future<String> exportCsv(List<Transaction> transactions) async {
     final csv = const ListToCsvConverter().convert(_rows(transactions));
-    // UTF-8 BOM so Excel opens Russian text correctly
+    // utf-8 bom so excel opens russian text correctly
     final bytes = [0xEF, 0xBB, 0xBF, ...utf8.encode(csv)];
     final file = await _save(
       'mmm_${_stampFormat.format(DateTime.now())}.csv',
@@ -55,7 +55,7 @@ class ExportService {
         } else {
           cell.value = TextCellValue(v.toString());
         }
-        // Bold header row
+        // bold header row
         if (r == 0) {
           cell.cellStyle = CellStyle(bold: true);
         }
@@ -79,7 +79,7 @@ class ExportService {
   }
 
   static Future<Directory> _exportDir() async {
-    // Desktop: ~/Downloads
+    // desktop: ~/downloads
     if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
       final home = Platform.environment['HOME'] ??
           Platform.environment['USERPROFILE'] ??

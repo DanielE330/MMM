@@ -45,7 +45,7 @@ class HomeScreen extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             children: [
               const SizedBox(height: 8),
-              // Balance card
+              // balance card
               Card(
                 color: colorScheme.primaryContainer,
                 child: Padding(
